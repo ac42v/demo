@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="sqlserver">
+        <!--注释-->
+        <commentGenerator>
+            <!-- 将数据库中表的字段描述信息添加到注释 -->
+            <property name="addRemarkComments" value="false"/>
+            <!-- 注释里不添加日期 -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <jdbcConnection
+                driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                connectionURL="jdbc:sqlserver://118.190.245.65:26974;DatabaseName=GS_TS_PlantDLMS"
+                userId="sa"
+                password="Zxcv5678="/>
+        <!-- 生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generatord-source目录下 -->
+        <javaModelGenerator targetPackage="com.github.jackieonway.bean.entity" targetProject="src/main/java">
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.github.jackieonwaymodel.[schemaName] -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+            <!-- 是否生成构造函数 默认是false -->
+            <property name="constructorBased" value="false"/>
+        </javaModelGenerator>
+
+        <!--对应的mapper.xml文件 -->
+        <sqlMapGenerator targetPackage="com.github.jackieonway.dao.mapper" targetProject="src\main\java\">
+            <property name="enableSubPackages" value="false" />
+            <property name="constructorBased" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 对应的Mapper接口类文件 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.github.jackieonway.dao.mapper" targetProject="src\main\java">
+            <property name="enableSubPackages" value="false" />
+            <property name="constructorBased" value="false"/>
+        </javaClientGenerator>
+<!--        <table tableName="BI_JianCha">-->
+<!--            &lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+<!--            <property name="modelOnly" value="false"/>-->
+<!--        </table>-->
+        <!--生成对应表及类名 -->
+        <table tableName="BI_JianCha" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true" />
+            <!-- 需要插入时返回主键值，请将此属性打开，column值为主键的列明 -->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true" />-->
+        </table>
+    </context>
+</generatorConfiguration>
